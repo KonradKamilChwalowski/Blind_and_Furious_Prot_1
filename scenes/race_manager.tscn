@@ -16,62 +16,71 @@ road_tile_base = ExtResource("3_hdytr")
 
 [node name="Camera2D" type="Camera2D" parent="Car"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="ButtonLeft" type="Button" parent="CanvasLayer"]
+[node name="ButtonLeft" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 377.0
 offset_right = 481.0
 offset_bottom = 408.0
 text = "Left"
 
-[node name="ButtonRight" type="Button" parent="CanvasLayer"]
+[node name="ButtonRight" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 424.0
 offset_right = 492.0
 offset_bottom = 455.0
 text = "Right"
 
-[node name="Button000" type="Button" parent="CanvasLayer"]
+[node name="Button000" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 512.0
 offset_right = 479.0
 offset_bottom = 543.0
 text = "000"
 
-[node name="Button100" type="Button" parent="CanvasLayer"]
+[node name="Button100" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 572.0
 offset_right = 479.0
 offset_bottom = 603.0
 text = "100"
 
-[node name="Button200" type="Button" parent="CanvasLayer"]
+[node name="Button200" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 655.0
 offset_right = 479.0
 offset_bottom = 686.0
 text = "200"
 
-[node name="Button300" type="Button" parent="CanvasLayer"]
+[node name="Button300" type="Button" parent="UI"]
 offset_left = 443.0
 offset_top = 731.0
 offset_right = 479.0
 offset_bottom = 762.0
 text = "300"
 
-[node name="AddDrivingCommand" type="Button" parent="CanvasLayer"]
-offset_left = 446.0
-offset_top = 795.0
-offset_right = 454.0
-offset_bottom = 803.0
+[node name="AddDrivingCommand" type="Button" parent="UI"]
+offset_left = 391.0
+offset_top = 791.0
+offset_right = 525.0
+offset_bottom = 822.0
 scale = Vector2(1, 0.993409)
-text = "ADD"
+text = "ADD COMMAND"
 
-[connection signal="pressed" from="CanvasLayer/ButtonLeft" to="Car" method="_on_button_left_pressed"]
-[connection signal="pressed" from="CanvasLayer/ButtonRight" to="Car" method="_on_button_right_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button000" to="Car" method="_on_button_000_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button100" to="Car" method="_on_button_100_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button200" to="Car" method="_on_button_200_pressed"]
-[connection signal="pressed" from="CanvasLayer/Button300" to="Car" method="_on_button_300_pressed"]
-[connection signal="pressed" from="CanvasLayer/AddDrivingCommand" to="Car" method="_on_add_driving_command_pressed"]
+[node name="CommandList" type="VBoxContainer" parent="UI"]
+offset_left = 46.0
+offset_top = 731.0
+offset_right = 86.0
+offset_bottom = 771.0
+
+[node name="Label" type="Label" parent="UI/CommandList"]
+layout_mode = 2
+
+[connection signal="pressed" from="UI/ButtonLeft" to="Car" method="_on_button_left_pressed"]
+[connection signal="pressed" from="UI/ButtonRight" to="Car" method="_on_button_right_pressed"]
+[connection signal="pressed" from="UI/Button000" to="Car" method="_on_button_000_pressed"]
+[connection signal="pressed" from="UI/Button100" to="Car" method="_on_button_100_pressed"]
+[connection signal="pressed" from="UI/Button200" to="Car" method="_on_button_200_pressed"]
+[connection signal="pressed" from="UI/Button300" to="Car" method="_on_button_300_pressed"]
+[connection signal="pressed" from="UI/AddDrivingCommand" to="Car" method="_on_add_driving_command_pressed"]
