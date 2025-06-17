@@ -13,21 +13,65 @@ script = ExtResource("2_8k1jm")
 road_tile_base = ExtResource("3_hdytr")
 
 [node name="Car" parent="." instance=ExtResource("4_2wuhs")]
-position = Vector2(254, 800)
 
-[node name="ButtonLeft" type="Button" parent="."]
-offset_left = 476.0
-offset_top = 118.0
-offset_right = 514.0
-offset_bottom = 149.0
+[node name="Camera2D" type="Camera2D" parent="Car"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ButtonLeft" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 377.0
+offset_right = 481.0
+offset_bottom = 408.0
 text = "Left"
 
-[node name="ButtonRight" type="Button" parent="."]
-offset_left = 476.0
-offset_top = 165.0
-offset_right = 514.0
-offset_bottom = 196.0
+[node name="ButtonRight" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 424.0
+offset_right = 492.0
+offset_bottom = 455.0
 text = "Right"
 
-[connection signal="pressed" from="ButtonLeft" to="Car" method="_on_button_left_pressed"]
-[connection signal="pressed" from="ButtonRight" to="Car" method="_on_button_right_pressed"]
+[node name="Button000" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 512.0
+offset_right = 479.0
+offset_bottom = 543.0
+text = "000"
+
+[node name="Button100" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 572.0
+offset_right = 479.0
+offset_bottom = 603.0
+text = "100"
+
+[node name="Button200" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 655.0
+offset_right = 479.0
+offset_bottom = 686.0
+text = "200"
+
+[node name="Button300" type="Button" parent="CanvasLayer"]
+offset_left = 443.0
+offset_top = 731.0
+offset_right = 479.0
+offset_bottom = 762.0
+text = "300"
+
+[node name="AddDrivingCommand" type="Button" parent="CanvasLayer"]
+offset_left = 446.0
+offset_top = 795.0
+offset_right = 454.0
+offset_bottom = 803.0
+scale = Vector2(1, 0.993409)
+text = "ADD"
+
+[connection signal="pressed" from="CanvasLayer/ButtonLeft" to="Car" method="_on_button_left_pressed"]
+[connection signal="pressed" from="CanvasLayer/ButtonRight" to="Car" method="_on_button_right_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button000" to="Car" method="_on_button_000_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button100" to="Car" method="_on_button_100_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button200" to="Car" method="_on_button_200_pressed"]
+[connection signal="pressed" from="CanvasLayer/Button300" to="Car" method="_on_button_300_pressed"]
+[connection signal="pressed" from="CanvasLayer/AddDrivingCommand" to="Car" method="_on_add_driving_command_pressed"]
