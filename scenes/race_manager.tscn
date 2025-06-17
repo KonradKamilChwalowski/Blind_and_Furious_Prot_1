@@ -23,14 +23,14 @@ offset_left = 443.0
 offset_top = 377.0
 offset_right = 481.0
 offset_bottom = 408.0
-text = "Left"
+text = "LEFT"
 
 [node name="ButtonRight" type="Button" parent="UI"]
 offset_left = 443.0
-offset_top = 424.0
+offset_top = 435.0
 offset_right = 492.0
-offset_bottom = 455.0
-text = "Right"
+offset_bottom = 466.0
+text = "RIGHT"
 
 [node name="Button000" type="Button" parent="UI"]
 offset_left = 443.0
@@ -41,9 +41,9 @@ text = "000"
 
 [node name="Button100" type="Button" parent="UI"]
 offset_left = 443.0
-offset_top = 572.0
+offset_top = 581.0
 offset_right = 479.0
-offset_bottom = 603.0
+offset_bottom = 612.0
 text = "100"
 
 [node name="Button200" type="Button" parent="UI"]
@@ -68,6 +68,13 @@ offset_bottom = 822.0
 scale = Vector2(1, 0.993409)
 text = "ADD COMMAND"
 
+[node name="JumpButton" type="Button" parent="UI"]
+offset_left = 418.0
+offset_top = 834.0
+offset_right = 511.0
+offset_bottom = 865.0
+text = "JUMP A BIT"
+
 [node name="CommandList" type="VBoxContainer" parent="UI"]
 offset_left = 46.0
 offset_top = 731.0
@@ -84,3 +91,4 @@ layout_mode = 2
 [connection signal="pressed" from="UI/Button200" to="Car" method="_on_button_200_pressed"]
 [connection signal="pressed" from="UI/Button300" to="Car" method="_on_button_300_pressed"]
 [connection signal="pressed" from="UI/AddDrivingCommand" to="Car" method="_on_add_driving_command_pressed"]
+[connection signal="pressed" from="UI/JumpButton" to="Car" method="_on_jump_button_pressed"]

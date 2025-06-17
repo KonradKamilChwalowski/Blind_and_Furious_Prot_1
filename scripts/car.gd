@@ -1,4 +1,4 @@
-class_name Car extends Node2D
+class_name Car extends Area2D
 
 @export var speed: float = 100.0  # prędkość w pikselach na sekundę
 
@@ -7,13 +7,15 @@ var rotation_degree: float = 0.0
 var command_queue: Array = []
 var is_executing: bool = false
 var command_list_container: VBoxContainer
+var is_on_track: int = 0
 
 func init(cls: VBoxContainer) -> void:
 	command_list_container = cls
 
 func _process(delta: float) -> void:
 	# Ruch do przodu w kierunku, w którym obrócony jest pojazd (lokalna oś Y)
-	position -= transform.y.normalized() * speed * delta
+	if is_on_track > 0:
+		position -= transform.y.normalized() * speed * delta
 
 
 
@@ -67,3 +69,14 @@ func execute_next_command() -> void:
 	rotation += deg_to_rad(cmd.rotation)
 	
 	execute_next_command()
+
+func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	is_on_track += 1
+	print("Wszedł w area: ", area.name)
+
+func _on_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
+	is_on_track -= 1
+	print("Opuścił area: ", area.name)
+
+func _on_jump_button_pressed() -> void:
+	position -= transform.y.normalized()

@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://dspjyq1r53qfp"]
+[gd_scene load_steps=3 format=3 uid="uid://dspjyq1r53qfp"]
 
 [ext_resource type="Texture2D" uid="uid://bw0v4nicd0xo4" path="res://assets/road_base.png" id="1_eping"]
 
-[node name="RoadTileBase" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pobr"]
+size = Vector2(256, 256)
+
+[node name="RoadTileBase" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_eping")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8pobr")
