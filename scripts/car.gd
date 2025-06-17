@@ -1,21 +1,30 @@
 class_name Car extends Area2D
 
-@export var speed: float = 100.0  # prędkość w pikselach na sekundę
+@onready var speedometer: Label = get_node("../UI/Speedometer")
 
+var speed: float = 0.0
+var max_speed: float = 600.0
+var acceleration: float = 25.0
 var waiting_time: float
 var rotation_degree: float = 0.0
-var command_queue: Array = []
 var is_executing: bool = false
 var command_list_container: VBoxContainer
+var command_queue: Array = []
 var is_on_track: int = 0
 
 func init(cls: VBoxContainer) -> void:
 	command_list_container = cls
+	await get_tree().create_timer(1.0).timeout # The game is not starting on turn on
 
 func _process(delta: float) -> void:
 	# Ruch do przodu w kierunku, w którym obrócony jest pojazd (lokalna oś Y)
 	if is_on_track > 0:
 		position -= transform.y.normalized() * speed * delta
+	if speed < max_speed:
+		speed += acceleration * delta
+	
+	# Update Speedometer
+	speedometer.text = "SPEED: %.f" % float(speed/4)
 
 
 
@@ -70,6 +79,13 @@ func execute_next_command() -> void:
 	
 	execute_next_command()
 
+func _on_jump_button_pressed() -> void:
+	position -= transform.y.normalized()
+
+
+
+
+#	Collisions
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	is_on_track += 1
 	print("Wszedł w area: ", area.name)
@@ -77,6 +93,3 @@ func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, 
 func _on_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	is_on_track -= 1
 	print("Opuścił area: ", area.name)
-
-func _on_jump_button_pressed() -> void:
-	position -= transform.y.normalized()
