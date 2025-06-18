@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcac5pcwf75lh"]
+[gd_scene load_steps=8 format=3 uid="uid://dcac5pcwf75lh"]
 
 [ext_resource type="Script" uid="uid://dj1ckalog4t2q" path="res://scripts/race_manager.gd" id="1_yary2"]
 [ext_resource type="Script" uid="uid://7dl8y74wga85" path="res://scripts/track_manager.gd" id="2_8k1jm"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bgsfiq3775ddh" path="res://scenes/road_tile_M.tscn" id="4_eto5u"]
 [ext_resource type="PackedScene" uid="uid://byjkaxdifue32" path="res://scenes/road_tile_L.tscn" id="5_0dm81"]
 [ext_resource type="PackedScene" uid="uid://otcy7ayibc2r" path="res://scenes/road_tile_R.tscn" id="6_ferpe"]
-[ext_resource type="Script" uid="uid://c8bw4hkdkekyw" path="res://scripts/minimap_camera.gd" id="8_ferpe"]
 
 [node name="RaceManager" type="Node2D"]
 script = ExtResource("1_yary2")
@@ -24,6 +23,29 @@ road_tile_R = ExtResource("6_ferpe")
 [node name="Camera2D" type="Camera2D" parent="Car"]
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MinimapRoot" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 332.0
+offset_top = 135.0
+offset_right = 372.0
+offset_bottom = 175.0
+
+[node name="MinimapViewport" type="SubViewportContainer" parent="UI/MinimapRoot"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MinimapViewportInternal" type="SubViewport" parent="UI/MinimapRoot/MinimapViewport"]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(256, 256)
+render_target_update_mode = 4
+
+[node name="MinimapScene" type="Node2D" parent="UI/MinimapRoot/MinimapViewport/MinimapViewportInternal"]
+
+[node name="Camera2D" type="Camera2D" parent="UI/MinimapRoot/MinimapViewport/MinimapViewportInternal/MinimapScene"]
 
 [node name="Speedometer" type="Label" parent="UI"]
 offset_left = 35.0
@@ -97,24 +119,6 @@ offset_bottom = 771.0
 
 [node name="Label" type="Label" parent="UI/CommandList"]
 layout_mode = 2
-
-[node name="MinimapLayer" type="CanvasLayer" parent="."]
-
-[node name="MinimapViewport" type="SubViewportContainer" parent="MinimapLayer"]
-offset_left = 411.0
-offset_right = 539.0
-offset_bottom = 128.0
-
-[node name="MinimapView" type="SubViewport" parent="MinimapLayer/MinimapViewport"]
-disable_3d = true
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(128, 128)
-render_target_update_mode = 4
-
-[node name="MinimapCamera" type="Camera2D" parent="MinimapLayer/MinimapViewport/MinimapView" node_paths=PackedStringArray("target")]
-script = ExtResource("8_ferpe")
-target = NodePath("../../../../Car")
 
 [connection signal="pressed" from="UI/ButtonLeft" to="Car" method="_on_button_left_pressed"]
 [connection signal="pressed" from="UI/ButtonRight" to="Car" method="_on_button_right_pressed"]

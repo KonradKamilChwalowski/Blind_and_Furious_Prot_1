@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://byjkaxdifue32"]
+
+[ext_resource type="Texture2D" uid="uid://dwkbeyrwl0i4u" path="res://assets/road_turn_left_90.png" id="1_vmcs1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8pobr"]
+size = Vector2(256, 256)
+
+[node name="RoadTileBase" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vmcs1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8pobr")

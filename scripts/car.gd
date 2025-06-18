@@ -3,8 +3,8 @@ class_name Car extends Area2D
 @onready var speedometer: Label = get_node("../UI/Speedometer")
 
 var speed: float = 0.0
-var max_speed: float = 600.0
-var acceleration: float = 25.0
+var max_speed: float = 200.0
+var acceleration: float = 100.0
 var waiting_time: float
 var rotation_degree: float = 0.0
 var is_executing: bool = false
@@ -80,7 +80,7 @@ func execute_next_command() -> void:
 	execute_next_command()
 
 func _on_jump_button_pressed() -> void:
-	position -= transform.y.normalized()
+	position -= transform.y.normalized() * 200
 
 
 
@@ -88,8 +88,6 @@ func _on_jump_button_pressed() -> void:
 #	Collisions
 func _on_area_shape_entered(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	is_on_track += 1
-	print("Wszedł w area: ", area.name)
 
 func _on_area_shape_exited(area_rid: RID, area: Area2D, area_shape_index: int, local_shape_index: int) -> void:
 	is_on_track -= 1
-	print("Opuścił area: ", area.name)
